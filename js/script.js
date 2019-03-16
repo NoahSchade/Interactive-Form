@@ -26,6 +26,7 @@ $("#design").change(function(){
     $("label[for ='color']").show();
     $("select#color").show();
      showHideColor();
+     designColorMatch();
 });
 
 function showHideColor() {
@@ -35,5 +36,25 @@ function showHideColor() {
     } else {
         $("label[for ='color']").show();
         $("select#color").show();
+    }
+}
+
+function designColorMatch() {
+    if($("select#design option:nth-child(2)").is(':selected')){
+        $("option[value ='tomato']").hide();
+        $("option[value ='steelblue']").hide();
+        $("option[value ='dimgrey']").hide();
+
+        $("option[value ='cornflowerblue']").show();
+        $("option[value ='darkslategrey']").show();
+        $("option[value ='gold']").show();
+    } else if($("select#design option:nth-child(3)").is(':selected')) {
+        $("option[value ='tomato']").show();
+        $("option[value ='steelblue']").show();
+        $("option[value ='dimgrey']").show();
+
+        $("option[value ='cornflowerblue']").hide();
+        $("option[value ='darkslategrey']").hide();
+        $("option[value ='gold']").hide();
     }
 }
