@@ -17,3 +17,23 @@ function showHideOther() {
             $other_title.hide();
         }
 }
+
+$("label[for ='color']").hide();
+$("select#color").hide();
+
+
+$("#design").change(function(){
+    $("label[for ='color']").show();
+    $("select#color").show();
+     showHideColor();
+});
+
+function showHideColor() {
+    if($("select#design option:first").is(':selected')){
+        $("label[for ='color']").hide();
+        $("select#color").hide();
+    } else {
+        $("label[for ='color']").show();
+        $("select#color").show();
+    }
+}
