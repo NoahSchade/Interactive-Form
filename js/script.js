@@ -4,9 +4,13 @@ const $other_title = $('#other-title');
 
 $other_title.hide();
 
-document.getElementById("title").addEventListener("change", myFunction, true);
 
-function myFunction() {
+$("#title").change(function(){
+    showHideOther();
+});
+
+
+function showHideOther() {
         if($("[value ='other']").is(':selected')){
             $other_title.show();
         } else {
