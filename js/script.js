@@ -48,6 +48,8 @@ function designColorMatch() {
         $("option[value ='cornflowerblue']").show();
         $("option[value ='darkslategrey']").show();
         $("option[value ='gold']").show();
+
+        $("select#color").val("cornflowerblue");
     } else if($("select#design option:nth-child(3)").is(':selected')) {
         $("option[value ='tomato']").show();
         $("option[value ='steelblue']").show();
@@ -56,5 +58,7 @@ function designColorMatch() {
         $("option[value ='cornflowerblue']").hide();
         $("option[value ='darkslategrey']").hide();
         $("option[value ='gold']").hide();
+
+        $("select#color").val("tomato");
     }
 }
