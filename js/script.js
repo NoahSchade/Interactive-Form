@@ -94,4 +94,31 @@ $('[type = "checkbox"]').click(function() {
          $('label:nth-child(5)').removeAttr("style");
          $('[name="express"]').removeAttr("disabled");
     }
+
+    if($("[name = 'express']").is(':checked')) {
+        $('label:nth-child(3)').css("color", "gray");
+        $('[name="js-frameworks"]').attr("disabled", "true");
+        $('[name="js-frameworks"]').prop('checked', false);
+    } else {
+         $('label:nth-child(3)').removeAttr("style");
+         $('[name="js-frameworks"]').removeAttr("disabled");
+    }
+
+    if($("[name = 'js-libs']").is(':checked')) {
+        $('label:nth-child(6)').css("color", "gray");
+        $('[name="node"]').attr("disabled", "true");
+        $('[name="node"]').prop('checked', false);
+    } else {
+         $('label:nth-child(6)').removeAttr("style");
+         $('[name="node"]').removeAttr("disabled");
+    }
+
+    if($("[name = 'node']").is(':checked')) {
+        $('label:nth-child(4)').css("color", "gray");
+        $('[name="js-libs"]').attr("disabled", "true");
+        $('[name="js-libs"]').prop('checked', false);
+    } else {
+         $('label:nth-child(4)').removeAttr("style");
+         $('[name="js-libs"]').removeAttr("disabled");
+    }
 });
