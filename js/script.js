@@ -34,7 +34,7 @@ $("#design").change(function(){
             $(`#design option:nth-child(${i})`).remove();
         };
 
-        if($(`#design option:nth-child(${i})`).text() === "Theme - JS Puns") {
+        if($(`#design option:nth-child(${i})`).filter(':selected').text() === "Theme - JS Puns") {
             const regex = /.*JS Puns.*/;
             for(let i = 1; i <= $("#color option").length; i++){
                      const $colorText = $(`#color option:nth-child(${i})`).text();
@@ -46,6 +46,19 @@ $("#design").change(function(){
                      }
                 }
             }
+
+            // if($(`#design option:nth-child(${i})`).text() === "Theme - I &#9829; JS") {
+            //     const regex = /.*JS Puns.*/;
+            //     for(let i = 1; i <= $("#color option").length; i++){
+            //              const $colorText = $(`#color option:nth-child(${i})`).text();
+            //              const $colorElement = $(`#color option:nth-child(${i})`);
+            //              if($colorText.match(regex)){
+            //                 $colorElement.show();
+            //              } else {
+            //                 $colorElement.hide();
+            //              }
+            //     }
+            // }
         }
     }
 );
