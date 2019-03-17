@@ -33,5 +33,26 @@ $("#design").change(function(){
         if($(`#design option:nth-child(${i})`).text() === "Select Theme"){
             $(`#design option:nth-child(${i})`).remove();
         };
+
+        if($(`#design option:nth-child(${i})`).text() === "Theme - JS Puns") {
+            const regex = /.*JS Puns.*/;
+            for(let i = 1; i <= $("#color option").length; i++){
+                     const $colorText = $(`#color option:nth-child(${i})`).text();
+                     const $colorElement = $(`#color option:nth-child(${i})`);
+                     if($colorText.match(regex)){
+                        $colorElement.show();
+                     } else {
+                        $colorElement.hide();
+                     }
+                }
+            }
+        }
     }
-});
+);
+
+// var paragraph = 'The quick brown fox jumps over the lazy dog. It barked.';
+// var regex = /[A-Z]/g;
+// var found = paragraph.match(regex);
+
+// console.log(found);
+// expected output: Array ["T", "I"]
