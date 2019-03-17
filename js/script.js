@@ -44,24 +44,23 @@ $("#design").change(function(){
                      } else {
                         $colorElement.hide();
                      }
-                }
-            }
+             }
+        }
 
-            // if($(`#design option:nth-child(${i})`).text() === "Theme - I &#9829; JS") {
-            //     const regex = /.*JS Puns.*/;
-            //     for(let i = 1; i <= $("#color option").length; i++){
-            //              const $colorText = $(`#color option:nth-child(${i})`).text();
-            //              const $colorElement = $(`#color option:nth-child(${i})`);
-            //              if($colorText.match(regex)){
-            //                 $colorElement.show();
-            //              } else {
-            //                 $colorElement.hide();
-            //              }
-            //     }
-            // }
+        if($(`#design option:nth-child(${i})`).filter(':selected').text().match(/.*I.*/)) {
+            const regex = /.*I.*/;
+            for(let i = 1; i <= $("#color option").length; i++){
+                     const $colorText = $(`#color option:nth-child(${i})`).text();
+                     const $colorElement = $(`#color option:nth-child(${i})`);
+                     if($colorText.match(regex)){
+                        $colorElement.show();
+                     } else {
+                        $colorElement.hide();
+                     }
+             }
         }
     }
-);
+});
 
 // var paragraph = 'The quick brown fox jumps over the lazy dog. It barked.';
 // var regex = /[A-Z]/g;
