@@ -18,6 +18,7 @@ function showHideOther() {
         }
 }
 
+
 $("label[for ='color']").hide();
 $("select#color").hide();
 
@@ -25,40 +26,12 @@ $("select#color").hide();
 $("#design").change(function(){
     $("label[for ='color']").show();
     $("select#color").show();
-     showHideColor();
-     designColorMatch();
+    
+    for(let i = 1; i <= $("#design option").length; i++){
+        // console.log($(`#design option:nth-child(${i})`).text());
+
+        if($(`#design option:nth-child(${i})`).text() === "Select Theme"){
+            $(`#design option:nth-child(${i})`).remove();
+        };
+    }
 });
-
-function showHideColor() {
-    if($("select#design option:first").is(':selected')){
-        $("label[for ='color']").hide();
-        $("select#color").hide();
-    } else {
-        $("label[for ='color']").show();
-        $("select#color").show();
-    }
-}
-
-function designColorMatch() {
-    if($("select#design option:nth-child(2)").is(':selected')){
-        $("option[value ='tomato']").hide();
-        $("option[value ='steelblue']").hide();
-        $("option[value ='dimgrey']").hide();
-
-        $("option[value ='cornflowerblue']").show();
-        $("option[value ='darkslategrey']").show();
-        $("option[value ='gold']").show();
-
-        $("select#color").val("cornflowerblue");
-    } else if($("select#design option:nth-child(3)").is(':selected')) {
-        $("option[value ='tomato']").show();
-        $("option[value ='steelblue']").show();
-        $("option[value ='dimgrey']").show();
-
-        $("option[value ='cornflowerblue']").hide();
-        $("option[value ='darkslategrey']").hide();
-        $("option[value ='gold']").hide();
-
-        $("select#color").val("tomato");
-    }
-}
