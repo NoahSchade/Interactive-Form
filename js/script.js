@@ -68,14 +68,19 @@ $("#design").change(function(){
              $("select#color").val(iArr)[0];
         }
     }
-    
-   
+
 });
 
+const actRegex = /.*Tuesday 9am-12pm.*/;
+let $activity;
 
-// var paragraph = 'The quick brown fox jumps over the lazy dog. It barked.';
-// var regex = /[A-Z]/g;
-// var found = paragraph.match(regex);
+for(let i = 2; i <= $(".activities label").length + 1; i++) {
+    // console.log($(`.activities label:nth-child(${i})`).text());
 
-// console.log(found);
-// expected output: Array ["T", "I"]
+    $activity = $(`.activities label:nth-child(${i})`).text()
+
+    if($activity.match(actRegex)){
+        console.log($(`.activities label:nth-child(${i})`).text());
+    }
+
+}
