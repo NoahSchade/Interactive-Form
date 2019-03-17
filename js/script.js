@@ -85,6 +85,8 @@ $("#design").change(function(){
 
 // }
 
+
+
 $('[type = "checkbox"]').click(function() {
     if($("[name = 'js-frameworks']").is(':checked')) {
         $('label:nth-child(5)').css("color", "gray");
@@ -122,11 +124,23 @@ $('[type = "checkbox"]').click(function() {
          $('[name="js-libs"]').removeAttr("disabled");
     }
 
+
     const total = "<h3>Total: $</h3>";
     $(".activities").append(total);
-    console.log($(".activities h3").length);
     if($(".activities h3").length > 1) {
         $(".activities h3")[1].remove();
     }
 });
 
+
+let j = 0;
+
+$('input[type="checkbox"]').click(function(){
+    if($(this).prop("checked") == true){
+        j++;
+    }
+    else if($(this).prop("checked") == false){
+        j--;
+    }
+    console.log(j);
+});
