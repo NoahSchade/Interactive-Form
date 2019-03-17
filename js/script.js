@@ -87,6 +87,7 @@ $("#design").change(function(){
 
 $('[type = "checkbox"]').click(function() {
     if($("[name = 'js-frameworks']").is(':checked')) {
-        console.log("test");
+        $('label:nth-child(5)').css("color", "gray");
+        $('[name="express"]').attr("disabled", "true");
     }
 });
