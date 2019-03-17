@@ -71,16 +71,22 @@ $("#design").change(function(){
 
 });
 
-const actRegex = /.*Tuesday 9am-12pm.*/;
-let $activity;
+// const actRegex = /.*Tuesday 9am-12pm.*/;
+// let $activity;
 
-for(let i = 2; i <= $(".activities label").length + 1; i++) {
-    // console.log($(`.activities label:nth-child(${i})`).text());
+// for(let i = 2; i <= $(".activities label").length + 1; i++) {
+//     // console.log($(`.activities label:nth-child(${i})`).text());
 
-    $activity = $(`.activities label:nth-child(${i})`).text()
+//     $activity = $(`.activities label:nth-child(${i})`).text()
 
-    if($activity.match(actRegex)){
-        console.log($(`.activities label:nth-child(${i})`).text());
+//     if($activity.match(actRegex)){
+//         console.log($(`.activities label:nth-child(${i})`).text());
+//     }
+
+// }
+
+$('[type = "checkbox"]').click(function() {
+    if($("[name = 'js-frameworks']").is(':checked')) {
+        console.log("test");
     }
-
-}
+});
