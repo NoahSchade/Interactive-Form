@@ -121,4 +121,12 @@ $('[type = "checkbox"]').click(function() {
          $('label:nth-child(4)').removeAttr("style");
          $('[name="js-libs"]').removeAttr("disabled");
     }
+
+    const total = "<h3>Total: $</h3>";
+    $(".activities").append(total);
+    console.log($(".activities h3").length);
+    if($(".activities h3").length > 1) {
+        $(".activities h3")[1].remove();
+    }
 });
+
