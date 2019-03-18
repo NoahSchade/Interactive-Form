@@ -155,7 +155,7 @@ $("option[value = 'select_method']").hide();
 $("option[value = 'credit card'").attr("selected", "selected");
 
 $("select#payment").change(function(){
-    if($("option[value = 'paypal'").is(':selected')){
+    if($("option[value = 'paypal']").is(':selected')){
         $("#credit-card").hide();
         const bitcoinRegex = /.*Bitcoin.*/;
         const paypalRegex = /.*PayPal.*/;
@@ -171,7 +171,7 @@ $("select#payment").change(function(){
 });
 
 $("select#payment").change(function(){
-    if($("option[value = 'bitcoin'").is(':selected')){
+    if($("option[value = 'bitcoin']").is(':selected')){
         $("#credit-card").hide();
         const bitcoinRegex = /.*Bitcoin.*/;
         const paypalRegex = /.*PayPal.*/;
@@ -187,7 +187,7 @@ $("select#payment").change(function(){
 });
 
 $("select#payment").change(function(){
-    if($("option[value = 'credit card'").is(':selected')){
+    if($("option[value = 'credit card']").is(':selected')){
         $("#credit-card").show();
         const bitcoinRegex = /.*Bitcoin.*/;
         const paypalRegex = /.*PayPal.*/;
@@ -202,3 +202,11 @@ $("select#payment").change(function(){
     }      
 });
 
+$('form').on('submit',function(e){
+    const nameRegex = /^\s*$/;
+    if($("#name").val().match(nameRegex)){
+        e.preventDefault();
+        $("#name").css("border", "3px solid red");
+        $("[for = 'name']").css("color", "red");
+    }
+}) 
