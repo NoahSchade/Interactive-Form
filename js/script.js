@@ -134,13 +134,23 @@ $('[type = "checkbox"]').click(function() {
 
 
 let j = 0;
+let hundred = 100;
+let twoHundred = 0;
+let total = 0;
 
-$('input[type="checkbox"]').click(function(){
-    if($(this).prop("checked") == true){
+$('input[type="checkbox"]').click(function() {
+    if($(this).prop("checked") == true) {
         j++;
+        if($('[name = "all"]').prop("checked") == true) {
+            twoHundred = 100;
+        }
     }
-    else if($(this).prop("checked") == false){
+    else if($(this).prop("checked") == false) {
         j--;
+        twoHundred = 0;
+        if($('[name = "all"]').prop("checked") == true) {
+            twoHundred = 100;
+        }
     }
-    console.log(j);
+    console.log(cost = j * hundred + twoHundred);
 });
