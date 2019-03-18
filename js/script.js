@@ -140,3 +140,13 @@ $('input[type="checkbox"]').click(function() {
         $(".activities h3")[0].remove();
     }
 });
+
+
+$("option[value = 'select_method']").hide();
+$("option[value = 'credit card'").attr("selected", "selected");
+
+$("select#payment").change(function(){
+    if($("option[value = 'paypal'").is(':selected')){
+        alert("test");
+    }
+  });
