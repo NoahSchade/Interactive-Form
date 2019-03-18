@@ -163,12 +163,11 @@ $("select#payment").change(function(){
             if($(`fieldset div:nth-child(${i})`).text().match(bitcoinRegex)){
                 $(`fieldset div:nth-child(${i})`).hide();
             }
-            else if($(`fieldset div:nth-child(${i})`).text().match(paypalRegex))
+            else if($(`fieldset div:nth-child(${i})`).text().match(paypalRegex)){
                 $(`fieldset div:nth-child(${i})`).show();
             }
-            
-        }
-
+        }       
+    }
 });
 
 $("select#payment").change(function(){
@@ -180,12 +179,11 @@ $("select#payment").change(function(){
             if($(`fieldset div:nth-child(${i})`).text().match(paypalRegex)){
                 $(`fieldset div:nth-child(${i})`).hide();
             }
-            else if($(`fieldset div:nth-child(${i})`).text().match(bitcoinRegex))
+            else if($(`fieldset div:nth-child(${i})`).text().match(bitcoinRegex)){
                 $(`fieldset div:nth-child(${i})`).show();
             }
-            
-        }
-             
+        }    
+    }
 });
 
 $("select#payment").change(function(){
@@ -197,10 +195,10 @@ $("select#payment").change(function(){
             if($(`fieldset div:nth-child(${i})`).text().match(paypalRegex)){
                 $(`fieldset div:nth-child(${i})`).hide();
             }
-            else if($(`fieldset div:nth-child(${i})`).text().match(bitcoinRegex))
+            else if($(`fieldset div:nth-child(${i})`).text().match(bitcoinRegex)){
                 $(`fieldset div:nth-child(${i})`).hide();
             }
-            
         }
-             
+    }      
 });
+
