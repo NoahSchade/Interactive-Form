@@ -166,9 +166,41 @@ $("select#payment").change(function(){
             else if($(`fieldset div:nth-child(${i})`).text().match(paypalRegex))
                 $(`fieldset div:nth-child(${i})`).show();
             }
-                // console.log($(`fieldset div:nth-child(${i}`).text());
             
         }
-    
 
+});
+
+$("select#payment").change(function(){
+    if($("option[value = 'bitcoin'").is(':selected')){
+        $("#credit-card").hide();
+        const bitcoinRegex = /.*Bitcoin.*/;
+        const paypalRegex = /.*PayPal.*/;
+        for(let i = 1; i <= $("fieldset div").length; i++){
+            if($(`fieldset div:nth-child(${i})`).text().match(paypalRegex)){
+                $(`fieldset div:nth-child(${i})`).hide();
+            }
+            else if($(`fieldset div:nth-child(${i})`).text().match(bitcoinRegex))
+                $(`fieldset div:nth-child(${i})`).show();
+            }
+            
+        }
+             
+});
+
+$("select#payment").change(function(){
+    if($("option[value = 'credit card'").is(':selected')){
+        $("#credit-card").show();
+        const bitcoinRegex = /.*Bitcoin.*/;
+        const paypalRegex = /.*PayPal.*/;
+        for(let i = 1; i <= $("fieldset div").length; i++){
+            if($(`fieldset div:nth-child(${i})`).text().match(paypalRegex)){
+                $(`fieldset div:nth-child(${i})`).hide();
+            }
+            else if($(`fieldset div:nth-child(${i})`).text().match(bitcoinRegex))
+                $(`fieldset div:nth-child(${i})`).hide();
+            }
+            
+        }
+             
 });
