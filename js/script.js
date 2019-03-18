@@ -71,22 +71,6 @@ $("#design").change(function(){
 
 });
 
-// const actRegex = /.*Tuesday 9am-12pm.*/;
-// let $activity;
-
-// for(let i = 2; i <= $(".activities label").length + 1; i++) {
-//     // console.log($(`.activities label:nth-child(${i})`).text());
-
-//     $activity = $(`.activities label:nth-child(${i})`).text()
-
-//     if($activity.match(actRegex)){
-//         console.log($(`.activities label:nth-child(${i})`).text());
-//     }
-
-// }
-
-
-
 $('[type = "checkbox"]').click(function() {
     if($("[name = 'js-frameworks']").is(':checked')) {
         $('label:nth-child(5)').css("color", "gray");
@@ -125,11 +109,7 @@ $('[type = "checkbox"]').click(function() {
     }
 
 
-    const total = "<h3>Total: $</h3>";
-    $(".activities").append(total);
-    if($(".activities h3").length > 1) {
-        $(".activities h3")[1].remove();
-    }
+    
 });
 
 
@@ -153,4 +133,10 @@ $('input[type="checkbox"]').click(function() {
         }
     }
     console.log(cost = j * hundred + twoHundred);
+
+    const totalText = `<h3>Total: $${cost}</h3>`;
+    $(".activities").append(totalText);
+    if($(".activities h3").length > 1) {
+        $(".activities h3")[0].remove();
+    }
 });
