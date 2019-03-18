@@ -147,6 +147,13 @@ $("option[value = 'credit card'").attr("selected", "selected");
 
 $("select#payment").change(function(){
     if($("option[value = 'paypal'").is(':selected')){
-        alert("test");
+        $("#credit-card").hide();
+        const bitcoinRegex = /.*Bitcoin.*/;
+        for(let i = 1; i <= $("fieldset div").length; i++){
+            if($(`fieldset div:nth-child(${i})`).text().match(bitcoinRegex)){
+                $(`fieldset div:nth-child(${i})`).hide();
+            }
+        }
     }
-  });
+
+});
