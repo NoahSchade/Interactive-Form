@@ -222,22 +222,43 @@ $('form').on('submit',function(e){
     }
 })
 
+const nameRegex = /^\s*$/;
+const numberRegex = /\d/;
+
 $("#name").on('keyup', function(){
-    const nameRegex = /^\s*$/;
+    
     if($("#name").val().match(nameRegex)){
         $("#name").css("border", "3px solid red");
         $("[for = 'name']").html("Name:<span id='nameFieldBlank'>Name field should not be blank</span>");
         $("#nameFieldBlank").css("color", "red");
         $("#nameFieldBlank").css("position", "absolute");
         $("#nameFieldBlank").css("transform", "translateX(50%)");
-        $("fieldset:last").append("<div class='nameBlankBox'><br><br><div id='nameBlank'>To register, you must enter a name.</div></div>");
-        $("#nameBlank").css("color", "red");
-        if($(".nameBlankBox").length > 1) {
-            $(".nameBlankBox")[1].remove();
+        $("fieldset:last").append("<div class='nameBlankBox'><br><br><div class='nameBlank'>To register, you must enter a name.</div></div>");
+        $(".nameBlank").css("color", "red");
+        if($(".nameBlankBox").length === 2) {
+            $(".nameBlankBox")[0].remove();
         }
-    } else {
+    } 
+
+})
+
+$("#name").on('keyup', function(){
+    
+    if($("#name").val().match(numberRegex)){
+        $("#name").css("border", "3px solid red");
+        $("[for = 'name']").html("Name:<span id='nameFieldBlank'>Name field should not contain numbers</span>");
+        $("#nameFieldBlank").css("color", "red");
+        $("#nameFieldBlank").css("position", "absolute");
+        $("#nameFieldBlank").css("transform", "translateX(50%)");
+        $("fieldset:last").append("<div class='nameBlankBox'><br><br><div class='nameBlank'>To register, you cannot have numbers in the name field.</div></div>");
+        $(".nameBlank").css("color", "red");
+        if($(".nameBlankBox").length === 2) {
+            $(".nameBlankBox")[0].remove();
+        }
+    } 
+    else if(!$("#name").val().match(numberRegex) && !$("#name").val().match(nameRegex)) {
         $("[for = 'name']").html("Name:");
         $("#name").css("border", "none");
         $(".nameBlankBox").remove();
     }
-})
+});
