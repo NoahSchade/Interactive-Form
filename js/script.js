@@ -202,6 +202,9 @@ $("select#payment").change(function(){
     }      
 });
 
+const nameRegex = /^\s*$/;
+const numberRegex = /\d/;
+
 $('form').on('submit',function(e){
     const nameRegex = /^\s*$/;
     if($("#name").val().match(nameRegex)){
@@ -222,8 +225,28 @@ $('form').on('submit',function(e){
     }
 })
 
-const nameRegex = /^\s*$/;
-const numberRegex = /\d/;
+$('form').on('submit',function(e){
+    if($("#name").val().match(numberRegex)){
+        e.preventDefault();
+        $("#name").css("border", "3px solid red");
+        $("[for = 'name']").html("Name:<span id='nameFieldBlank'>Name field should not contain numbers</span>");
+        $("#nameFieldBlank").css("color", "red");
+        $("#nameFieldBlank").css("position", "absolute");
+        $("#nameFieldBlank").css("transform", "translateX(50%)");
+        $("fieldset:last").append("<div class='nameBlankBox'><br><br><div class='nameBlank'>To register, you cannot have numbers in the name field.</div></div>");
+        $(".nameBlank").css("color", "red");
+        if($(".nameBlankBox").length === 2) {
+            $(".nameBlankBox")[0].remove();
+        }
+    } 
+    else if(!$("#name").val().match(numberRegex) && !$("#name").val().match(nameRegex)) {
+        $("[for = 'name']").html("Name:");
+        $("#name").css("border", "none");
+        $(".nameBlankBox").remove();
+    }
+})
+
+
 
 $("#name").on('keyup', function(){
     
