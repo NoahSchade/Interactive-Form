@@ -207,22 +207,37 @@ $('form').on('submit',function(e){
     if($("#name").val().match(nameRegex)){
         e.preventDefault();
         $("#name").css("border", "3px solid red");
-        $("[for = 'name']").html("Name:<span id='nameField'> -Name field should not be blank</span>");
-        $("#nameField").css("color", "red");
-        $("#nameField").css("position", "absolute");
-        $("#nameField").css("transform", "translateX(50%)");
-        $("fieldset:last").append("<br><br><div id='nameError'>To register, you must enter a name.</div>");
-        $("#nameError").css("color", "red");
-        // const validationMessage = document.createElement("div");
-        // $("body").append(validationMessage);
-        // // $(body).append(validationMessage);
-        // $(validationMessage).css("position", "fixed");
-        // $(validationMessage).css("transform", "translateX(50%)");
-        // $(validationMessage).css("display", "block");
-        // $(validationMessage).css("margin", "0 auto");
-        // $(validationMessage).css("top", "100px");
-        // $(validationMessage).css("width", "50%");
-        // $(validationMessage).css("height", "50px");
-        // $(validationMessage).css("backgroundColor", "red");
+        $("[for = 'name']").html("Name:<span id='nameFieldBlank'>Name field should not be blank</span>");
+        $("#nameFieldBlank").css("color", "red");
+        $("#nameFieldBlank").css("position", "absolute");
+        $("#nameFieldBlank").css("transform", "translateX(50%)");
+        $("fieldset:last").append("<div class='nameBlankBox'><br><br><div id='nameBlank'>To register, you must enter a name.</div></div>");
+        $("#nameBlank").css("color", "red");
+        if($(".nameBlankBox").length > 1) {
+            $(".nameBlankBox")[1].remove();
+        }
     }
-}) 
+    else {
+        $(".nameBlankBox").remove();
+    }
+})
+
+$("#name").on('keyup', function(){
+    const nameRegex = /^\s*$/;
+    if($("#name").val().match(nameRegex)){
+        $("#name").css("border", "3px solid red");
+        $("[for = 'name']").html("Name:<span id='nameFieldBlank'>Name field should not be blank</span>");
+        $("#nameFieldBlank").css("color", "red");
+        $("#nameFieldBlank").css("position", "absolute");
+        $("#nameFieldBlank").css("transform", "translateX(50%)");
+        $("fieldset:last").append("<div class='nameBlankBox'><br><br><div id='nameBlank'>To register, you must enter a name.</div></div>");
+        $("#nameBlank").css("color", "red");
+        if($(".nameBlankBox").length > 1) {
+            $(".nameBlankBox")[1].remove();
+        }
+    } else {
+        $("[for = 'name']").html("Name:");
+        $("#name").css("border", "none");
+        $(".nameBlankBox").remove();
+    }
+})
