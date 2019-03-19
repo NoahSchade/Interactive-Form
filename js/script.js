@@ -203,7 +203,7 @@ $("select#payment").change(function(){
 });
 
 const nameRegex = /^\s*$/;
-const numberRegex = /\d/;
+const numberRegex = /[^A-Za-z-\s]+/;
 
 $('form').on('submit',function(e){
     const nameRegex = /^\s*$/;
