@@ -203,17 +203,17 @@ $("select#payment").change(function(){
 });
 
 const nameRegex = /^\s*$/;
-const numberRegex = /[^A-Za-z-\s]+/;
+const notLetterOrSpace = /[^A-Za-z-\s]+/;
 
 $('form').on('submit',function(e){
     const nameRegex = /^\s*$/;
     if($("#name").val().match(nameRegex)){
         e.preventDefault();
         $("#name").css("border", "3px solid red");
-        $("[for = 'name']").html("Name:<span id='nameFieldBlank'>Name field should not be blank</span>");
-        $("#nameFieldBlank").css("color", "red");
-        $("#nameFieldBlank").css("position", "absolute");
-        $("#nameFieldBlank").css("transform", "translateX(50%)");
+        $("[for = 'name']").html("Name:<span class='nameFieldBlank'>Name field should not be blank</span>");
+        $(".nameFieldBlank").css("color", "red");
+        $(".nameFieldBlank").css("position", "absolute");
+        $(".nameFieldBlank").css("transform", "translateX(50%)");
         $("fieldset:last").append("<div class='nameBlankBox'><br><br><div id='nameBlank'>To register, you must enter a name.</div></div>");
         $("#nameBlank").css("color", "red");
         if($(".nameBlankBox").length > 1) {
@@ -226,20 +226,20 @@ $('form').on('submit',function(e){
 })
 
 $('form').on('submit',function(e){
-    if($("#name").val().match(numberRegex)){
+    if($("#name").val().match(notLetterOrSpace)){
         e.preventDefault();
         $("#name").css("border", "3px solid red");
-        $("[for = 'name']").html("Name:<span id='nameFieldBlank'>Name field should not contain numbers</span>");
-        $("#nameFieldBlank").css("color", "red");
-        $("#nameFieldBlank").css("position", "absolute");
-        $("#nameFieldBlank").css("transform", "translateX(50%)");
-        $("fieldset:last").append("<div class='nameBlankBox'><br><br><div class='nameBlank'>To register, you cannot have numbers in the name field.</div></div>");
+        $("[for = 'name']").html("Name:<span class='nameFieldBlank'>Name field should only contain letters and spaces</span>");
+        $(".nameFieldBlank").css("color", "red");
+        $(".nameFieldBlank").css("position", "absolute");
+        $(".nameFieldBlank").css("transform", "translateX(20%)");
+        $("fieldset:last").append("<div class='nameBlankBox'><br><br><div class='nameBlank'>To register, the name field should only contain letters and spaces</div></div>");
         $(".nameBlank").css("color", "red");
         if($(".nameBlankBox").length === 2) {
             $(".nameBlankBox")[0].remove();
         }
     } 
-    else if(!$("#name").val().match(numberRegex) && !$("#name").val().match(nameRegex)) {
+    else if(!$("#name").val().match(notLetterOrSpace) && !$("#name").val().match(nameRegex)) {
         $("[for = 'name']").html("Name:");
         $("#name").css("border", "none");
         $(".nameBlankBox").remove();
@@ -252,10 +252,10 @@ $("#name").on('keyup', function(){
     
     if($("#name").val().match(nameRegex)){
         $("#name").css("border", "3px solid red");
-        $("[for = 'name']").html("Name:<span id='nameFieldBlank'>Name field should not be blank</span>");
-        $("#nameFieldBlank").css("color", "red");
-        $("#nameFieldBlank").css("position", "absolute");
-        $("#nameFieldBlank").css("transform", "translateX(50%)");
+        $("[for = 'name']").html("Name:<span class='nameFieldBlank'>Name field should not be blank</span>");
+        $(".nameFieldBlank").css("color", "red");
+        $(".nameFieldBlank").css("position", "absolute");
+        $(".nameFieldBlank").css("transform", "translateX(50%)");
         $("fieldset:last").append("<div class='nameBlankBox'><br><br><div class='nameBlank'>To register, you must enter a name.</div></div>");
         $(".nameBlank").css("color", "red");
         if($(".nameBlankBox").length === 2) {
@@ -267,19 +267,19 @@ $("#name").on('keyup', function(){
 
 $("#name").on('keyup', function(){
     
-    if($("#name").val().match(numberRegex)){
+    if($("#name").val().match(notLetterOrSpace)){
         $("#name").css("border", "3px solid red");
-        $("[for = 'name']").html("Name:<span id='nameFieldBlank'>Name field should not contain numbers</span>");
-        $("#nameFieldBlank").css("color", "red");
-        $("#nameFieldBlank").css("position", "absolute");
-        $("#nameFieldBlank").css("transform", "translateX(50%)");
-        $("fieldset:last").append("<div class='nameBlankBox'><br><br><div class='nameBlank'>To register, you cannot have numbers in the name field.</div></div>");
+        $("[for = 'name']").html("Name:<span class='nameFieldBlank'>Name field should only contain letters and spaces</span>");
+        $(".nameFieldBlank").css("color", "red");
+        $(".nameFieldBlank").css("position", "absolute");
+        $(".nameFieldBlank").css("transform", "translateX(20%)");
+        $("fieldset:last").append("<div class='nameBlankBox'><br><br><div class='nameBlank'>To register, the name field should only contain letters and spaces.</div></div>");
         $(".nameBlank").css("color", "red");
         if($(".nameBlankBox").length === 2) {
             $(".nameBlankBox")[0].remove();
         }
     } 
-    else if(!$("#name").val().match(numberRegex) && !$("#name").val().match(nameRegex)) {
+    else if(!$("#name").val().match(notLetterOrSpace) && !$("#name").val().match(nameRegex)) {
         $("[for = 'name']").html("Name:");
         $("#name").css("border", "none");
         $(".nameBlankBox").remove();
