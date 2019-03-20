@@ -325,3 +325,36 @@ $("#mail").on('keyup', function(){
         $(".emailBlankBox").remove();
     }
 });
+
+
+$('form').on('submit',function(e){
+    if(!$("#mail").val().match(emailValidator)){
+        e.preventDefault();
+        $("#mail").css("border", "3px solid red");
+        $("[for = 'mail']").html("Email:<span class='emailFieldBlank'>Invalid Email");
+        $(".emailFieldBlank").css("color", "red");
+        $(".emailFieldBlank").css("position", "absolute");
+        $(".emailFieldBlank").css("transform", "translateX(200%)");
+        $("fieldset:last").append("<div class='emailBlankBox'><br><br><div class='emailBlank'>To register, you must enter a valid email address.</div></div>");
+        $(".emailBlank").css("color", "red");
+        if($(".emailBlankBox").length === 2) {
+            $(".emailBlankBox")[0].remove();
+        }
+    }    
+});
+
+$('form').on('submit',function(e){
+    if($("#mail").val().match(emptyFieldRegex)){
+        $("#mail").css("border", "3px solid red");
+        $("[for = 'mail']").html("Email:<span class='emailFieldBlank'>Email field should not be blank</span>");
+        $(".emailFieldBlank").css("color", "red");
+        $(".emailFieldBlank").css("position", "absolute");
+        $(".emailFieldBlank").css("transform", "translateX(50%)");
+        $("fieldset:last").append("<div class='emailBlankBox'><br><br><div class='emailBlank'>To register, you must enter an email.</div></div>");
+        $(".emailBlank").css("color", "red");
+        if($(".emailBlankBox").length === 2) {
+            $(".emailBlankBox")[0].remove();
+        }
+    }
+});
+
