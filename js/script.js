@@ -73,39 +73,39 @@ $("#design").change(function(){
 
 $('[type = "checkbox"]').click(function() {
     if($("[name = 'js-frameworks']").is(':checked')) {
-        $('label:nth-child(5)').css("color", "gray");
+        $('[name = "express"]').parent().css("color", "gray");
         $('[name="express"]').attr("disabled", "true");
         $('[name="express"]').prop('checked', false);
     } else {
-         $('label:nth-child(5)').removeAttr("style");
+         $('[name = "express"]').parent().removeAttr("style");
          $('[name="express"]').removeAttr("disabled");
     }
 
     if($("[name = 'express']").is(':checked')) {
-        $('label:nth-child(3)').css("color", "gray");
+        $('[name="js-frameworks"]').parent().css("color", "gray");
         $('[name="js-frameworks"]').attr("disabled", "true");
         $('[name="js-frameworks"]').prop('checked', false);
     } else {
-         $('label:nth-child(3)').removeAttr("style");
+         $('[name="js-frameworks"]').parent().removeAttr("style");
          $('[name="js-frameworks"]').removeAttr("disabled");
     }
 
     if($("[name = 'js-libs']").is(':checked')) {
-        $('label:nth-child(6)').css("color", "gray");
+        $('[name="node"]').parent().css("color", "gray");
         $('[name="node"]').attr("disabled", "true");
         $('[name="node"]').prop('checked', false);
     } else {
-         $('label:nth-child(6)').removeAttr("style");
+         $('[name="node"]').parent().removeAttr("style");
          $('[name="node"]').removeAttr("disabled");
     }
 
     if($("[name = 'node']").is(':checked')) {
-        $('label:nth-child(4)').css("color", "gray");
+        $('[name="js-libs"]').parent().css("color", "gray");
         $('[name="js-libs"]').attr("disabled", "true");
         $('[name="js-libs"]').prop('checked', false);
     } else {
-         $('label:nth-child(4)').removeAttr("style");
-         $('[name="js-libs"]').removeAttr("disabled");
+        $('[name="js-libs"]').parent().removeAttr("style");
+        $('[name="js-libs"]').removeAttr("disabled");
     }
 
 
@@ -358,3 +358,17 @@ $('form').on('submit',function(e){
     }
 });
 
+$("input[type = 'checkbox']").on('click', function(e){
+    if($(".activities h3").text() === "Total: $0"){
+        $(".activities").prepend("<h4>You must select atleast one activity</h4>");
+        $(".activities h4").css("color", "red");
+        $("fieldset:last").append("<div class='activityNoneBox'><br><br><div class='activityNone'>To register, you must select atleast one activity.");
+        $(".activityNone").css("color", "red");
+    } else {
+        $(".activities h4").remove();
+        $(".activityNoneBox").remove();
+    }
+    if($(".activities h4").length >= 2) {
+        $(".activities h4")[0].remove();
+    }
+});
