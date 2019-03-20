@@ -345,6 +345,7 @@ $('form').on('submit',function(e){
 
 $('form').on('submit',function(e){
     if($("#mail").val().match(emptyFieldRegex)){
+        e.preventDefault();
         $("#mail").css("border", "3px solid red");
         $("[for = 'mail']").html("Email:<span class='emailFieldBlank'>Email field should not be blank</span>");
         $(".emailFieldBlank").css("color", "red");
@@ -370,5 +371,22 @@ $("input[type = 'checkbox']").on('click', function(e){
     }
     if($(".activities h4").length >= 2) {
         $(".activities h4")[0].remove();
+    }
+});
+
+$('form').on('submit',function(e){
+    if($(".activities h3").text() === "Total: $0" || $(".activities h3").text() === ""){
+        e.preventDefault();
+        $(".activities").prepend("<h4>You must select atleast one activity</h4>");
+        $(".activities h4").css("color", "red");
+        $("fieldset:last").append("<div class='activityNoneBox'><br><br><div class='activityNone'>To register, you must select atleast one activity.");
+        $(".activityNone").css("color", "red");
+    } else {
+        $(".activities h4").remove();
+        $(".activityNoneBox").remove();
+    }
+    if($(".activities h4").length >= 2) {
+        $(".activities h4")[0].remove();
+        $(".activityNoneBox")[0].remove();
     }
 });
