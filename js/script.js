@@ -202,12 +202,13 @@ $("select#payment").change(function(){
     }      
 });
 
-const nameRegex = /^\s*$/;
+const emptyFieldRegex = /^\s*$/;
 const notLetterOrSpace = /[^A-Za-z-\s]+/;
+const emailValidator = /[A-z,\d, .]+@[A-z,\d, .]+\.[A-z,\d]+/;
 
 $('form').on('submit',function(e){
-    const nameRegex = /^\s*$/;
-    if($("#name").val().match(nameRegex)){
+    const emptyFieldRegex = /^\s*$/;
+    if($("#name").val().match(emptyFieldRegex)){
         e.preventDefault();
         $("#name").css("border", "3px solid red");
         $("[for = 'name']").html("Name:<span class='nameFieldBlank'>Name field should not be blank</span>");
@@ -239,7 +240,7 @@ $('form').on('submit',function(e){
             $(".nameBlankBox")[0].remove();
         }
     } 
-    else if(!$("#name").val().match(notLetterOrSpace) && !$("#name").val().match(nameRegex)) {
+    else if(!$("#name").val().match(notLetterOrSpace) && !$("#name").val().match(emptyFieldRegex)) {
         $("[for = 'name']").html("Name:");
         $("#name").css("border", "none");
         $(".nameBlankBox").remove();
@@ -250,7 +251,7 @@ $('form').on('submit',function(e){
 
 $("#name").on('keyup', function(){
     
-    if($("#name").val().match(nameRegex)){
+    if($("#name").val().match(emptyFieldRegex)){
         $("#name").css("border", "3px solid red");
         $("[for = 'name']").html("Name:<span class='nameFieldBlank'>Name field should not be blank</span>");
         $(".nameFieldBlank").css("color", "red");
@@ -279,9 +280,48 @@ $("#name").on('keyup', function(){
             $(".nameBlankBox")[0].remove();
         }
     } 
-    else if(!$("#name").val().match(notLetterOrSpace) && !$("#name").val().match(nameRegex)) {
+    else if(!$("#name").val().match(notLetterOrSpace) && !$("#name").val().match(emptyFieldRegex)) {
         $("[for = 'name']").html("Name:");
         $("#name").css("border", "none");
         $(".nameBlankBox").remove();
+    }
+});
+
+
+$("#mail").on('keyup', function(){
+
+    if(!$("#mail").val().match(emailValidator)){
+        $("#mail").css("border", "3px solid red");
+        $("[for = 'mail']").html("Email:<span class='emailFieldBlank'>Invalid Email");
+        $(".emailFieldBlank").css("color", "red");
+        $(".emailFieldBlank").css("position", "absolute");
+        $(".emailFieldBlank").css("transform", "translateX(200%)");
+        $("fieldset:last").append("<div class='emailBlankBox'><br><br><div class='emailBlank'>To register, you must enter a valid email address.</div></div>");
+        $(".emailBlank").css("color", "red");
+        if($(".emailBlankBox").length === 2) {
+            $(".emailBlankBox")[0].remove();
+        }
+    }     
+});
+
+$("#mail").on('keyup', function(){
+
+    if($("#mail").val().match(emptyFieldRegex)){
+        $("#mail").css("border", "3px solid red");
+        $("[for = 'mail']").html("Email:<span class='emailFieldBlank'>Email field should not be blank</span>");
+        $(".emailFieldBlank").css("color", "red");
+        $(".emailFieldBlank").css("position", "absolute");
+        $(".emailFieldBlank").css("transform", "translateX(50%)");
+        $("fieldset:last").append("<div class='emailBlankBox'><br><br><div class='emailBlank'>To register, you must enter an email.</div></div>");
+        $(".emailBlank").css("color", "red");
+        if($(".emailBlankBox").length === 2) {
+            $(".emailBlankBox")[0].remove();
+        }
+    } 
+    
+    else if(!$("#mail").val().match(emptyFieldRegex) && $("#mail").val().match(emailValidator)) {
+        $("[for = 'mail']").html("Email:");
+        $("#mail").css("border", "none");
+        $(".emailBlankBox").remove();
     }
 });
