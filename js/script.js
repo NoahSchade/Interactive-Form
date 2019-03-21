@@ -1,3 +1,8 @@
+const emptyFieldRegex = /^\s*$/;
+const notLetterOrSpace = /[^A-Za-z-\s]+/;
+const emailValidator = /[A-z,\d, .]+@[A-z,\d, .]+\.[A-z,\d]+/;
+const creditCardValidator = /^(\d{13}|\d{14}|\d{15}|\d{16})$/;
+
 $("#name").focus();
 
 const $other_title = $('#other-title');
@@ -202,9 +207,6 @@ $("select#payment").change(function(){
     }      
 });
 
-const emptyFieldRegex = /^\s*$/;
-const notLetterOrSpace = /[^A-Za-z-\s]+/;
-const emailValidator = /[A-z,\d, .]+@[A-z,\d, .]+\.[A-z,\d]+/;
 
 $('form').on('submit',function(e){
     const emptyFieldRegex = /^\s*$/;
@@ -388,5 +390,13 @@ $('form').on('submit',function(e){
     if($(".activities h4").length >= 2) {
         $(".activities h4")[0].remove();
         $(".activityNoneBox")[0].remove();
+    }
+    if ($("#cc-num").val() === "") {
+        e.preventDefault();
+        $(".credit-card").prepend("<h4>Credit card field should not be blank</h4>");
+        $(".credit-card h4").css("color", "red");
+
+        $("fieldset:last").append("<div id='creditBlank'><br><br>To register, you must enter a credit card number.</div>");
+        $("#creditBlank").css("color", "red");
     }
 });
