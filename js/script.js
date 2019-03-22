@@ -104,13 +104,18 @@ $("#design").change(function(){
 
 });
 
+/*
+If there are two activites with the same day and time,
+Disable the checkbox and gray out the label of the element that
+is not checked and has the same time and day as the element that is checked.
+*/
 $('[type = "checkbox"]').click(function() {
-    if($("[name = 'js-frameworks']").is(':checked')) {
-        $('[name = "express"]').parent().css("color", "gray");
+    if($('[name="js-frameworks"]').is(':checked')) {
+        $('[name="express"]').parent().css("color", "gray");
         $('[name="express"]').attr("disabled", "true");
         $('[name="express"]').prop('checked', false);
     } else {
-         $('[name = "express"]').parent().removeAttr("style");
+         $('[name="express"]').parent().removeAttr("style");
          $('[name="express"]').removeAttr("disabled");
     }
 
@@ -140,12 +145,12 @@ $('[type = "checkbox"]').click(function() {
         $('[name="js-libs"]').parent().removeAttr("style");
         $('[name="js-libs"]').removeAttr("disabled");
     }
-
-
-    
 });
 
-
+/* 
+Calculate to total cost of the activities
+and display it below the activities.
+*/
 let j = 0;
 let hundred = 100;
 let twoHundred = 0;
