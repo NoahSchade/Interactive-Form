@@ -3,6 +3,7 @@ const notLetterOrSpace = /[^A-Za-z-\s]+/;
 const emailValidator = /[A-z,\d, .]+@[A-z,\d, .]+\.[A-z,\d]+/;
 const creditCardValidator = /^(\d{13}|\d{14}|\d{15}|\d{16})$/;
 const zipValidator = /^\d{5}$/;
+const cvvValidator = /^\d{3}$/;
 
 $("label[for='exp-month']").css("clear", "both");
 
@@ -448,6 +449,30 @@ $('form').on('submit',function(e){
         $(".zipIb").remove();
     }
 
+    if ($("#cvv").val() === "") {
+        $(".invalidCvv").remove()
+        $(".cvvIb").remove();
+        e.preventDefault();
+        $(".credit-card").prepend("<h4 class='invalidCvv'>CVV field should not be blank</h4>");
+        $(".invalidCvv").css("color", "red");
+        $("#cvv").css("border", "3px solid red");
+        $("fieldset:last").append("<div class='cvvIb blankCvv'><br><br>To register, you must enter a CVV number.</div>");
+        $(".cvvIb").css("color", "red");
+    } else if (!$("#cvv").val().match(cvvValidator)) {
+        e.preventDefault();
+        $(".invalidCvv").remove()
+        $(".cvvIb").remove();
+        $(".credit-card").prepend("<h4 class='invalidCvv'>Invalid CVV number</h4>");
+        $(".invalidCvv").css("color", "red");
+        $("#cvv").css("border", "3px solid red");
+        $("fieldset:last").append("<div class='cvvIb'><br><br>To register, you must enter a valid CVV number.</div>");
+        $(".cvvIb").css("color", "red");
+    } else {
+        $("#cvv").css("border", "");
+        $(".invalidCvv").remove()
+        $(".cvvIb").remove();
+    }
+
 });
 
 
@@ -478,3 +503,66 @@ $("#cc-num").on('keyup', function(e){
 });
 
 
+$("#zip").on('keyup', function(e){
+    if ($("#zip").val() === "") {
+        $(".invalidZip").remove()
+        $(".zipIb").remove();
+        e.preventDefault();
+        $(".credit-card").prepend("<h4 class='invalidZip'>Zip code field should not be blank</h4>");
+        $(".invalidZip").css("color", "red");
+        $("#zip").css("border", "3px solid red");
+        $("fieldset:last").append("<div class='zipIb blankCredit'><br><br>To register, you must enter a zip code.</div>");
+        $(".zipIb").css("color", "red");
+    } else if (!$("#zip").val().match(zipValidator)) {
+        e.preventDefault();
+        $(".invalidZip").remove()
+        $(".zipIb").remove();
+        $(".credit-card").prepend("<h4 class='invalidZip'>Invalid zip code</h4>");
+        $(".invalidZip").css("color", "red");
+        $("#zip").css("border", "3px solid red");
+        $("fieldset:last").append("<div class='zipIb'><br><br>To register, you must enter a valid zip code.</div>");
+        $(".zipIb").css("color", "red");
+    } else {
+        $("#zip").css("border", "");
+        $(".invalidZip").remove()
+        $(".zipIb").remove();
+    }
+
+});
+
+
+$("#cvv").on('keyup', function(e){
+    if ($("option[value='credit card']").is(':selected')) {
+        if ($("#cvv").val() === "") {
+            $(".invalidCvv").remove()
+            $(".cvvIb").remove();
+            e.preventDefault();
+            $(".credit-card").prepend("<h4 class='invalidCvv'>CVV field should not be blank</h4>");
+            $(".invalidCvv").css("color", "red");
+            $("#cvv").css("border", "3px solid red");
+            $("fieldset:last").append("<div class='cvvIb blankCvv'><br><br>To register, you must enter a CVV number.</div>");
+            $(".cvvIb").css("color", "red");
+        } else if (!$("#cvv").val().match(cvvValidator)) {
+            e.preventDefault();
+            $(".invalidCvv").remove()
+            $(".cvvIb").remove();
+            $(".credit-card").prepend("<h4 class='invalidCvv'>Invalid CVV number</h4>");
+            $(".invalidCvv").css("color", "red");
+            $("#cvv").css("border", "3px solid red");
+            $("fieldset:last").append("<div class='cvvIb'><br><br>To register, you must enter a valid CVV number.</div>");
+            $(".cvvIb").css("color", "red");
+        } else {
+            $("#cvv").css("border", "");
+            $(".invalidCvv").remove()
+            $(".cvvIb").remove();
+        }
+    }
+});
+
+
+$("select#payment").on('change', function() {
+   if ($("option[value='credit card']").is(':selected')) {
+    console.log("test");
+   };
+
+});
