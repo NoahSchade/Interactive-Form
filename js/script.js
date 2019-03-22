@@ -564,8 +564,13 @@ $("#cvv").on('keyup', function(e){
 
 
 $("select#payment").on('change', function() {
-   if ($("option[value='credit card']").is(':selected')) {
-    console.log("test");
+   if (!$("option[value='credit card']").is(':selected')) {
+        $(".invalidCvv").remove();
+        $(".invalidZip").remove();
+        $(".invalidWarning").remove();
+        $(".creditIb").remove();
+        $(".zipIb").remove();
+        $(".cvvIb").remove();
    };
 
 });
