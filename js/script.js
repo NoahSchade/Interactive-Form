@@ -1,3 +1,4 @@
+// Validate the form using regular expressions.
 const emptyFieldRegex = /^\s*$/;
 const notLetterOrSpace = /[^A-Za-z-\s]+/;
 const emailValidator = /[A-z,\d, .]+@[A-z,\d, .]+\.[A-z,\d]+/;
@@ -5,19 +6,25 @@ const creditCardValidator = /^(\d{13}|\d{14}|\d{15}|\d{16})$/;
 const zipValidator = /^\d{5}$/;
 const cvvValidator = /^\d{3}$/;
 
+// Makes sure that the 'Experation Date' label goes down instead of going right when there is an error message for the credit card.
 $("label[for='exp-month']").css("clear", "both");
 
+// Focus on the name field when the page first loads.
 $("#name").focus();
 
+// The input field for 'Your Job Role is hidden when the page first loads.
 const $other_title = $('#other-title');
-
 $other_title.hide();
 
 
+/* 
+ When the 'Job Role' drop down menu selects a different job role, 
+ the 'showHideOther' function will display the 'Your Job Role' input field if 'other' is selected
+ and will hide the 'Your Job Role' input field if the 'other' job role is not selected.
+*/
 $("#title").change(function(){
     showHideOther();
 });
-
 
 function showHideOther() {
         if($("[value ='other']").is(':selected')){
@@ -27,7 +34,7 @@ function showHideOther() {
         }
 }
 
-
+// The color label and the color drop down menu is hidden when the page first loads.
 $("label[for ='color']").hide();
 $("select#color").hide();
 
@@ -35,16 +42,29 @@ $("select#color").hide();
 const jsPunsArr = [];
 const iArr = [];
 
+
+/* 
+When the dessign drop down menu changes option, both the label and
+drop down menu of the color section are displayed.
+*/
 $("#design").change(function(){
     $("label[for ='color']").show();
     $("select#color").show();
     
     for(let i = 1; i <= $("#design option").length; i++){
 
+        /* 
+        When the dessign drop down menu changes option, remove the "Select Theme" option from the design menu.
+        */
         if($(`#design option:nth-child(${i})`).text() === "Select Theme"){
             $(`#design option:nth-child(${i})`).remove();
         };
 
+
+        /*
+        When the design drop down menu selects "Theme - JS Puns", then only the colors that match
+        '(JS Puns shirt only)' are displayed in the color drop down menu.
+        */
         if($(`#design option:nth-child(${i})`).filter(':selected').text() === "Theme - JS Puns") {
             const regex = /.*JS Puns.*/;
             for(let i = 1; i <= $("#color option").length; i++){
@@ -61,6 +81,10 @@ $("#design").change(function(){
              $("select#color").val(jsPunsArr)[0];
         }
 
+        /*
+        When the design drop down menu selects "Theme - I &#9829; JS", then only the colors that match
+        '(I &#9829; JS shirt only)' are displayed in the color drop down menu.
+        */
         if($(`#design option:nth-child(${i})`).filter(':selected').text().match(/.*I.*/)) {
             const regex = /.*I.*/;
             for(let i = 1; i <= $("#color option").length; i++){
