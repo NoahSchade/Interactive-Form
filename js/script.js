@@ -2,6 +2,7 @@ const emptyFieldRegex = /^\s*$/;
 const notLetterOrSpace = /[^A-Za-z-\s]+/;
 const emailValidator = /[A-z,\d, .]+@[A-z,\d, .]+\.[A-z,\d]+/;
 const creditCardValidator = /^(\d{13}|\d{14}|\d{15}|\d{16})$/;
+const zipValidator = /^\d{5}$/;
 
 $("label[for='exp-month']").css("clear", "both");
 
@@ -396,90 +397,84 @@ $('form').on('submit',function(e){
 
 
     if ($("#cc-num").val() === "") {
+        if ($("#cc-num").val() === "") {
+            e.preventDefault();
+            $(".invalidWarning").remove()
+            $(".creditIb").remove();
+            $(".credit-card").prepend("<h4 class='invalidWarning'>Credit card field should not be blank</h4>");
+            $(".credit-card h4").css("color", "red");
+            $("#cc-num").css("border", "3px solid red");
+            $("fieldset:last").append("<div class='creditIb'><br><br>To register, you must enter a credit card number.</div>");
+            $(".creditIb").css("color", "red");
+        } else if (!$("#cc-num").val().match(creditCardValidator)) {
+            e.preventDefault();
+            $(".invalidWarning").remove()
+            $(".creditIb").remove();
+            $(".credit-card").prepend("<h4 class='invalidWarning'>Invalid credit card number</h4>");
+            $(".invalidWarning").css("color", "red");
+            $("#cc-num").css("border", "3px solid red");
+            $("fieldset:last").append("<div class='creditIb'><br><br>To register, you must enter a valid credit card number.</div>");
+            $(".creditIb").css("color", "red");
+        } else {
+            $("#cc-num").css("border", "");
+            $(".invalidWarning").remove()
+            $(".creditIb").remove();
+        }
+    }
+
+
+
+    if ($("#zip").val() === "") {
+        $(".invalidZip").remove()
+        $(".zipIb").remove();
         e.preventDefault();
-        $(".credit-card h4").remove()
-        $(".creditIb").remove();
-        $(".credit-card").prepend("<h4 class='blankCredit'>Credit card field should not be blank</h4>");
-        $(".credit-card h4").css("color", "red");
-        $("#cc-num").css("border", "3px solid red");
-        $("fieldset:last").append("<div class='creditIb blankCredit'><br><br>To register, you must enter a credit card number.</div>");
-        $(".creditIb").css("color", "red");
-    } else if (!$("#cc-num").val().match(creditCardValidator)) {
+        $(".credit-card").prepend("<h4 class='invalidZip'>Zip code field should not be blank</h4>");
+        $(".invalidZip").css("color", "red");
+        $("#zip").css("border", "3px solid red");
+        $("fieldset:last").append("<div class='zipIb blankCredit'><br><br>To register, you must enter a zip code.</div>");
+        $(".zipIb").css("color", "red");
+    } else if (!$("#zip").val().match(zipValidator)) {
         e.preventDefault();
-        $(".credit-card h4").remove()
-        $(".creditIb").remove();
-        $(".credit-card").prepend("<h4 class='invalidWarning'>Invalid credit card number</h4>");
-        $(".credit-card h4").css("color", "red");
-        $("#cc-num").css("border", "3px solid red");
-        $("fieldset:last").append("<div class='creditIb'><br><br>To register, you must enter a valid credit card number.</div>");
-        $(".creditIb").css("color", "red");
+        $(".invalidZip").remove()
+        $(".zipIb").remove();
+        $(".credit-card").prepend("<h4 class='invalidZip'>Invalid zip code</h4>");
+        $(".invalidZip").css("color", "red");
+        $("#zip").css("border", "3px solid red");
+        $("fieldset:last").append("<div class='zipIb'><br><br>To register, you must enter a valid zip code.</div>");
+        $(".zipIb").css("color", "red");
     } else {
-        $("#cc-num").css("border", "");
-        $(".credit-card h4").remove()
-        $(".creditIb").remove();
+        $("#zip").css("border", "");
+        $(".invalidZip").remove()
+        $(".zipIb").remove();
     }
 
 });
 
 
 $("#cc-num").on('keyup', function(e){
-    if($(".activities h3").text() === "Total: $0" || $(".activities h3").text() === ""){
-        e.preventDefault();
-        $(".activities").prepend("<h4>You must select atleast one activity</h4>");
-        $(".activities h4").css("color", "red");
-        $("fieldset:last").append("<div class='activityNoneBox'><br><br><div class='activityNone'>To register, you must select atleast one activity.");
-        $(".activityNone").css("color", "red");
-    } else {
-        $(".activities h4").remove();
-        $(".activityNoneBox").remove();
-    }
-    if($(".activities h4").length >= 2) {
-        $(".activities h4")[0].remove();
-        $(".activityNoneBox")[0].remove();
-    }
-
-
     if ($("#cc-num").val() === "") {
         e.preventDefault();
-        $(".credit-card h4").remove()
+        $(".invalidWarning").remove()
         $(".creditIb").remove();
-        $(".credit-card").prepend("<h4 class='blankCredit'>Credit card field should not be blank</h4>");
+        $(".credit-card").prepend("<h4 class='invalidWarning'>Credit card field should not be blank</h4>");
         $(".credit-card h4").css("color", "red");
         $("#cc-num").css("border", "3px solid red");
-        $("fieldset:last").append("<div class='creditIb blankCredit'><br><br>To register, you must enter a credit card number.</div>");
+        $("fieldset:last").append("<div class='creditIb'><br><br>To register, you must enter a credit card number.</div>");
         $(".creditIb").css("color", "red");
     } else if (!$("#cc-num").val().match(creditCardValidator)) {
         e.preventDefault();
-        $(".credit-card h4").remove()
+        $(".invalidWarning").remove()
         $(".creditIb").remove();
         $(".credit-card").prepend("<h4 class='invalidWarning'>Invalid credit card number</h4>");
-        $(".credit-card h4").css("color", "red");
+        $(".invalidWarning").css("color", "red");
         $("#cc-num").css("border", "3px solid red");
         $("fieldset:last").append("<div class='creditIb'><br><br>To register, you must enter a valid credit card number.</div>");
         $(".creditIb").css("color", "red");
     } else {
         $("#cc-num").css("border", "");
-        $(".credit-card h4").remove()
+        $(".invalidWarning").remove()
         $(".creditIb").remove();
     }
 });
 
 
-
-
-
-// $("#cc-num").on('keyup', function(){
-    
-
-//     if ($("#cc-num").val().match(creditCardValidator)) {
-//         $("#cc-num").css("border", "");
-//         $(".credit-card h4").remove()
-//         $(".creditIb").remove();
-//     }
-
-//     if ($("#cc-num").val() !== "" && $(".invalidWarning")) {
-//         $(".blankCredit").remove();
-//         $("#cc-num").css("border", "");
-//     }
-
-// });
