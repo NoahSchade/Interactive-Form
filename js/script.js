@@ -181,6 +181,11 @@ $('input[type="checkbox"]').click(function() {
 
 const bitcoinRegex = /.*Bitcoin.*/;
 const paypalRegex = /.*PayPal.*/;
+
+/*
+By default, hide the Bitcoin information.
+By default, hide the PayPal information.
+*/
 for(let i = 1; i <= $("fieldset div").length; i++){
     if($(`fieldset div:nth-child(${i})`).text().match(bitcoinRegex)){
         $(`fieldset div:nth-child(${i})`).hide();
@@ -189,9 +194,14 @@ for(let i = 1; i <= $("fieldset div").length; i++){
         $(`fieldset div:nth-child(${i})`).hide();
     }
 }
+
+// Hide the option with the text of 'Select Payment Method'.
+// Select the credit card option by default.
 $("option[value = 'select_method']").hide();
 $("option[value = 'credit card'").attr("selected", "selected");
 
+// When paypal is selected in the payment drop down menu,
+// Show PayPal information and hide all other information in the 'Payment Info' section.
 $("select#payment").change(function(){
     if($("option[value = 'paypal']").is(':selected')){
         $("#credit-card").hide();
@@ -208,6 +218,8 @@ $("select#payment").change(function(){
     }
 });
 
+// When bitcoin is selected in the payment drop down menu,
+// Show bitcoin information and hide all other information in the 'Payment Info' section.
 $("select#payment").change(function(){
     if($("option[value = 'bitcoin']").is(':selected')){
         $("#credit-card").hide();
@@ -224,6 +236,8 @@ $("select#payment").change(function(){
     }
 });
 
+// When credit card is selected in the payment drop down menu,
+// Show credit card fields and hide all other information in the 'Payment Info' section.
 $("select#payment").change(function(){
     if($("option[value = 'credit card']").is(':selected')){
         $("#credit-card").show();
