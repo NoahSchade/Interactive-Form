@@ -521,7 +521,8 @@ $('form').on('submit',function(e){
     }
 });
 
-
+// Run this code only if the credit card option is selected from the drop down menu.
+// When a key is released and the credit card number field is empty or invalid, raise an error.
 $("#cc-num").on('keyup', function(e){
     if ($("option[value='credit card']").is(':selected')) {
         if ($("#cc-num").val() === "") {
@@ -548,7 +549,8 @@ $("#cc-num").on('keyup', function(e){
     }
 });
 
-
+// Run this code only if the credit card option is selected from the drop down menu.
+// When a key is released and the zip code field is empty or invalid, raise an error.
 $("#zip").on('keyup', function(e){
     if ($("option[value='credit card']").is(':selected')) {
         if ($("#zip").val() === "") {
@@ -575,7 +577,8 @@ $("#zip").on('keyup', function(e){
     }
 });
 
-
+// Run this code only if the credit card option is selected from the drop down menu.
+// When a key is released and the CVV field is empty or invalid, raise an error.
 $("#cvv").on('keyup', function(e){
     if ($("option[value='credit card']").is(':selected')) {
         if ($("#cvv").val() === "") {
@@ -602,7 +605,7 @@ $("#cvv").on('keyup', function(e){
     }
 });
 
-
+// When the payment option in the drop down menu selects bitcoin or PayPal, remove all the error messages related to the credit card.
 $("select#payment").on('change', function() {
    if (!$("option[value='credit card']").is(':selected')) {
         $(".invalidCvv").remove();
