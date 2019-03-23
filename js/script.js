@@ -441,6 +441,7 @@ $('form').on('submit',function(e){
         $(".activityNoneBox")[0].remove();
     }
 
+    // Run this code only if the credit card option is selected from the drop down menu.
     // When the submit button is clicked and the credit card number field is empty or invalid, raise an error and prevent the form from being submitted.
     if ($("option[value='credit card']").is(':selected')) {
             if ($("#cc-num").val() === "") {
@@ -468,7 +469,7 @@ $('form').on('submit',function(e){
             }
 
 
-
+        // When the submit button is clicked and the zip code field is empty or invalid, raise an error and prevent the form from being submitted.
         if ($("#zip").val() === "") {
             $(".invalidZip").remove()
             $(".zipIb").remove();
@@ -493,6 +494,7 @@ $('form').on('submit',function(e){
             $(".zipIb").remove();
         }
 
+        // When the submit button is clicked and the cvv field is empty or invalid, raise an error and prevent the form from being submitted.
         if ($("#cvv").val() === "") {
             $(".invalidCvv").remove()
             $(".cvvIb").remove();
@@ -523,7 +525,6 @@ $('form').on('submit',function(e){
 $("#cc-num").on('keyup', function(e){
     if ($("option[value='credit card']").is(':selected')) {
         if ($("#cc-num").val() === "") {
-            e.preventDefault();
             $(".invalidWarning").remove()
             $(".creditIb").remove();
             $(".credit-card").prepend("<h4 class='invalidWarning'>Credit card field should not be blank</h4>");
@@ -532,7 +533,6 @@ $("#cc-num").on('keyup', function(e){
             $("fieldset:last").append("<div class='creditIb'><br><br>To register, you must enter a credit card number.</div>");
             $(".creditIb").css("color", "red");
         } else if (!$("#cc-num").val().match(creditCardValidator)) {
-            e.preventDefault();
             $(".invalidWarning").remove()
             $(".creditIb").remove();
             $(".credit-card").prepend("<h4 class='invalidWarning'>Invalid credit card number</h4>");
@@ -554,14 +554,12 @@ $("#zip").on('keyup', function(e){
         if ($("#zip").val() === "") {
             $(".invalidZip").remove()
             $(".zipIb").remove();
-            e.preventDefault();
             $(".credit-card").prepend("<h4 class='invalidZip'>Zip code field should not be blank</h4>");
             $(".invalidZip").css("color", "red");
             $("#zip").css("border", "3px solid red");
             $("fieldset:last").append("<div class='zipIb blankCredit'><br><br>To register, you must enter a zip code.</div>");
             $(".zipIb").css("color", "red");
         } else if (!$("#zip").val().match(zipValidator)) {
-            e.preventDefault();
             $(".invalidZip").remove()
             $(".zipIb").remove();
             $(".credit-card").prepend("<h4 class='invalidZip'>Invalid zip code</h4>");
@@ -583,14 +581,12 @@ $("#cvv").on('keyup', function(e){
         if ($("#cvv").val() === "") {
             $(".invalidCvv").remove()
             $(".cvvIb").remove();
-            e.preventDefault();
             $(".credit-card").prepend("<h4 class='invalidCvv'>CVV field should not be blank</h4>");
             $(".invalidCvv").css("color", "red");
             $("#cvv").css("border", "3px solid red");
             $("fieldset:last").append("<div class='cvvIb blankCvv'><br><br>To register, you must enter a CVV number.</div>");
             $(".cvvIb").css("color", "red");
         } else if (!$("#cvv").val().match(cvvValidator)) {
-            e.preventDefault();
             $(".invalidCvv").remove()
             $(".cvvIb").remove();
             $(".credit-card").prepend("<h4 class='invalidCvv'>Invalid CVV number</h4>");
