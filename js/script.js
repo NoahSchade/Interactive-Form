@@ -441,32 +441,31 @@ $('form').on('submit',function(e){
         $(".activityNoneBox")[0].remove();
     }
 
-if ($("option[value='credit card']").is(':selected')) {
-    if ($("#cc-num").val() === "") {
-        if ($("#cc-num").val() === "") {
-            e.preventDefault();
-            $(".invalidWarning").remove()
-            $(".creditIb").remove();
-            $(".credit-card").prepend("<h4 class='invalidWarning'>Credit card field should not be blank</h4>");
-            $(".credit-card h4").css("color", "red");
-            $("#cc-num").css("border", "3px solid red");
-            $("fieldset:last").append("<div class='creditIb'><br><br>To register, you must enter a credit card number.</div>");
-            $(".creditIb").css("color", "red");
-        } else if (!$("#cc-num").val().match(creditCardValidator)) {
-            e.preventDefault();
-            $(".invalidWarning").remove()
-            $(".creditIb").remove();
-            $(".credit-card").prepend("<h4 class='invalidWarning'>Invalid credit card number</h4>");
-            $(".invalidWarning").css("color", "red");
-            $("#cc-num").css("border", "3px solid red");
-            $("fieldset:last").append("<div class='creditIb'><br><br>To register, you must enter a valid credit card number.</div>");
-            $(".creditIb").css("color", "red");
-        } else {
-            $("#cc-num").css("border", "");
-            $(".invalidWarning").remove()
-            $(".creditIb").remove();
-        }
-    }
+    // When the submit button is clicked and the credit card number field is empty or invalid, raise an error and prevent the form from being submitted.
+    if ($("option[value='credit card']").is(':selected')) {
+            if ($("#cc-num").val() === "") {
+                e.preventDefault();
+                $(".invalidWarning").remove()
+                $(".creditIb").remove();
+                $(".credit-card").prepend("<h4 class='invalidWarning'>Credit card field should not be blank</h4>");
+                $(".credit-card h4").css("color", "red");
+                $("#cc-num").css("border", "3px solid red");
+                $("fieldset:last").append("<div class='creditIb'><br><br>To register, you must enter a credit card number.</div>");
+                $(".creditIb").css("color", "red");
+            } else if (!$("#cc-num").val().match(creditCardValidator)) {
+                e.preventDefault();
+                $(".invalidWarning").remove()
+                $(".creditIb").remove();
+                $(".credit-card").prepend("<h4 class='invalidWarning'>Invalid credit card number</h4>");
+                $(".invalidWarning").css("color", "red");
+                $("#cc-num").css("border", "3px solid red");
+                $("fieldset:last").append("<div class='creditIb'><br><br>To register, you must enter a valid credit card number.</div>");
+                $(".creditIb").css("color", "red");
+            } else {
+                $("#cc-num").css("border", "");
+                $(".invalidWarning").remove()
+                $(".creditIb").remove();
+            }
 
 
 
