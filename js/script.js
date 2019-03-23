@@ -254,7 +254,7 @@ $("select#payment").change(function(){
     }      
 });
 
-
+// When the submit button is clicked, raise an error if name field is blank and prevent the form from submitting.
 $('form').on('submit',function(e){
     const emptyFieldRegex = /^\s*$/;
     if($("#name").val().match(emptyFieldRegex)){
@@ -275,6 +275,7 @@ $('form').on('submit',function(e){
     }
 })
 
+// When the submit button is clicked, raise an error if name field is invalid and prevent the form from submitting.
 $('form').on('submit',function(e){
     if($("#name").val().match(notLetterOrSpace)){
         e.preventDefault();
@@ -297,9 +298,8 @@ $('form').on('submit',function(e){
 })
 
 
-
+// When a key is released while the name field is in focus, raise an error if the name field is blank.
 $("#name").on('keyup', function(){
-    
     if($("#name").val().match(emptyFieldRegex)){
         $("#name").css("border", "3px solid red");
         $("[for = 'name']").html("Name:<span class='nameFieldBlank'>Name field should not be blank</span>");
@@ -315,8 +315,8 @@ $("#name").on('keyup', function(){
 
 })
 
+// When a key is released while the name field is in focus, raise an error if the name field is invalid.
 $("#name").on('keyup', function(){
-    
     if($("#name").val().match(notLetterOrSpace)){
         $("#name").css("border", "3px solid red");
         $("[for = 'name']").html("Name:<span class='nameFieldBlank'>Name field should only contain letters and spaces</span>");
@@ -336,9 +336,8 @@ $("#name").on('keyup', function(){
     }
 });
 
-
+// When a key is released while the email field is in focus, raise an error if the email field is invalid.
 $("#mail").on('keyup', function(){
-
     if(!$("#mail").val().match(emailValidator)){
         $("#mail").css("border", "3px solid red");
         $("[for = 'mail']").html("Email:<span class='emailFieldBlank'>Invalid Email");
@@ -353,8 +352,8 @@ $("#mail").on('keyup', function(){
     }     
 });
 
+// When a key is released while the email field is in focus, raise an error if the email field is blank.
 $("#mail").on('keyup', function(){
-
     if($("#mail").val().match(emptyFieldRegex)){
         $("#mail").css("border", "3px solid red");
         $("[for = 'mail']").html("Email:<span class='emailFieldBlank'>Email field should not be blank</span>");
@@ -367,7 +366,7 @@ $("#mail").on('keyup', function(){
             $(".emailBlankBox")[0].remove();
         }
     } 
-    
+
     else if(!$("#mail").val().match(emptyFieldRegex) && $("#mail").val().match(emailValidator)) {
         $("[for = 'mail']").html("Email:");
         $("#mail").css("border", "none");
@@ -375,7 +374,7 @@ $("#mail").on('keyup', function(){
     }
 });
 
-
+// When the submit button is clicked, raise an error if email field is invalid and prevent the form from submitting.
 $('form').on('submit',function(e){
     if(!$("#mail").val().match(emailValidator)){
         e.preventDefault();
@@ -392,6 +391,7 @@ $('form').on('submit',function(e){
     }    
 });
 
+// When the submit button is clicked, raise an error if email field is blank and prevent the form from submitting.
 $('form').on('submit',function(e){
     if($("#mail").val().match(emptyFieldRegex)){
         e.preventDefault();
@@ -408,6 +408,7 @@ $('form').on('submit',function(e){
     }
 });
 
+// When a checkbox is clicked, if no checkboxes are checked, raise an error. 
 $("input[type = 'checkbox']").on('click', function(e){
     if($(".activities h3").text() === "Total: $0"){
         $(".activities").prepend("<h4>You must select atleast one activity</h4>");
@@ -423,6 +424,7 @@ $("input[type = 'checkbox']").on('click', function(e){
     }
 });
 
+// When the submit button is clicked and there are no checkboxes checked, raise an error. 
 $('form').on('submit',function(e){
     if($(".activities h3").text() === "Total: $0" || $(".activities h3").text() === ""){
         e.preventDefault();
